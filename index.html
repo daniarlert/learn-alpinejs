@@ -8,12 +8,23 @@
     <script type="module" src="app.js"></script>
   </head>
   <body>
-    <!-- `x-data` defines a chunk of HTML as an Alpine component and provides the reactive data for that component to ref. -->
-    <div x-data="{ count: 0 }">
-      <!-- `x-on` is a directive used to listen for any event on a element -->
-      <button x-on:click="count++">Increment</button>
-      <span x-text="count"></span>
-      <button x-on:click="count--">Decrement</button>
+    <!-- Properties defined on x-data are available to all element children. In addition to state, we can store methods or even getters. -->
+    <div
+      x-data="{
+      open: false,
+      get isOpen() { return this.open },
+      toggle() { this.open = !this.open } ,
+    }"
+    >
+      <!-- @click and x-on:click are the same thing. -->
+      <button @click="toggle">Toggle</button>
+
+      <div x-show="isOpen">Contents...</div>
     </div>
+
+    <!-- If we have only a single element inside our Alpine component we can declare x-data on that single element. -->
+    <button x-data="{ open: true }" @click="open = false" x-show="open">
+      Hide me
+    </button>
   </body>
 </html>
