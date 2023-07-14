@@ -7,5 +7,13 @@
     <title>Learn Alpine.js</title>
     <script type="module" src="app.js"></script>
   </head>
-  <body></body>
+  <body>
+    <!-- `x-data` defines a chunk of HTML as an Alpine component and provides the reactive data for that component to ref. -->
+    <div x-data="{ count: 0 }">
+      <!-- `x-on` is a directive used to listen for any event on a element -->
+      <button x-on:click="count++">Increment</button>
+      <span x-text="count"></span>
+      <button x-on:click="count--">Decrement</button>
+    </div>
+  </body>
 </html>
