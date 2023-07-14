@@ -8,23 +8,24 @@
     <script type="module" src="app.js"></script>
   </head>
   <body>
-    <!-- Properties defined on x-data are available to all element children. In addition to state, we can store methods or even getters. -->
     <div
       x-data="{
-      open: false,
-      get isOpen() { return this.open },
-      toggle() { this.open = !this.open } ,
+      search: '',
+      items: ['foo', 'bar', 'baz'],
+      get filteredItems() {
+        return this.items.filter(
+          i => i.startsWith(this.search)
+        )
+      }
     }"
     >
-      <!-- @click and x-on:click are the same thing. -->
-      <button @click="toggle">Toggle</button>
-
-      <div x-show="isOpen">Contents...</div>
+      <!-- x-model is used to "bind" the value of an input with a data property. -->
+      <input x-model="search" type="text" placeholder="Search..." />
+      <ul>
+        <template x-for="item in filteredItems" :key="item">
+          <li x-text="item"></li>
+        </template>
+      </ul>
     </div>
-
-    <!-- If we have only a single element inside our Alpine component we can declare x-data on that single element. -->
-    <button x-data="{ open: true }" @click="open = false" x-show="open">
-      Hide me
-    </button>
   </body>
 </html>
