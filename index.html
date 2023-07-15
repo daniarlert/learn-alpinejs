@@ -5,9 +5,13 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Learn Alpine.js</title>
-    <script type="module" src="app.js"></script>
+    <script defer type="module" src="app.js"></script>
   </head>
   <body>
+    <div x-data>
+      <h1 x-uppercase>Learning Alpine.js</h1>
+    </div>
+
     <div
       x-data="{
       search: '',

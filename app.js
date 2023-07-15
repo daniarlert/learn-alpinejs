@@ -1,5 +1,11 @@
 import Alpine from 'alpinejs';
 
-window.Alpine = Alpine
+Alpine.directive(
+    'uppercase', el => {
+        console.log(el.textContent)
+        el.textContent = el.textContent.toUpperCase()
+    }
+)
 
-Alpine.start()
+window.Alpine = Alpine
+window.Alpine.start()
